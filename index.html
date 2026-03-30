@@ -759,6 +759,12 @@
             align-items: center;
             justify-content: center;
             gap: 28px;
+            pointer-events: none;
+            visibility: hidden;
+        }
+        .mobile-menu.open {
+            pointer-events: auto;
+            visibility: visible;
         }
         .mobile-menu a {
             font-family: 'Montserrat', sans-serif;
