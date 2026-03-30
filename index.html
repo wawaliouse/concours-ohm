@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OHM - Concours Greffe de Cheveux</title>
+    <meta name="description" content="Gagne une greffe de cheveux ou 2 000€ en cash avec OHM. Achète un kit de croissance et participe automatiquement.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #061a59;
+            --bg-light: #ebedf4;
+            --accent: #4ef589;
+            --dark: #09130c;
+            --white: #ffffff;
+            --gray-100: #f5f6f9;
+            --gray-300: #d1d5e0;
+            --gray-600: #6b7280;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .logo-header {
+            height: 40px;
+            width: auto;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark);
+            background: var(--white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Prompt', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ── HEADER ── */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--white);
+            border-bottom: 1px solid var(--bg-light);
+            padding: 16px 0;
+        }
+
+        header .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-header {
+            height: 32px;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            background: var(--primary);
+            color: var(--white);
+            padding: 80px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: var(--accent);
+            opacity: 0.06;
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-size: clamp(28px, 6vw, 48px);
+            line-height: 1.15;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: clamp(15px, 3vw, 18px);
+            opacity: 0.85;
+            max-width: 520px;
+            margin: 0 auto 36px;
+            line-height: 1.6;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--dark);
+            font-family: 'Prompt', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 16px 40px;
+            border-radius: 50px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(78, 245, 137, 0.3);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            font-family: 'Prompt', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 12px 32px;
+            border-radius: 50px;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        /* ── SECTIONS ── */
+        section {
+            padding: 64px 0;
+        }
+
+        .section-title {
+            font-size: clamp(22px, 4vw, 32px);
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray-600);
+            margin-bottom: 48px;
+            font-size: 15px;
+        }
+
+        /* ── LE CADEAU ── */
+        .cadeau {
+            background: var(--gray-100);
+        }
+
+        .cadeau-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cadeau-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 36px 28px;
+            text-align: center;
+            border: 2px solid var(--bg-light);
+            transition: border-color 0.2s;
+        }
+
+        .cadeau-card:hover {
+            border-color: var(--accent);
+        }
+
+        .cadeau-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .cadeau-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--accent);
+        }
+
+        .cadeau-card h3 {
+            font-size: 18px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .cadeau-card p {
+            font-size: 14px;
+            color: var(--gray-600);
+            line-height: 1.5;
+        }
+
+        .badge-valeur {
+            display: inline-block;
+            margin-top: 40px;
+            background: var(--primary);
+            color: var(--accent);
+            font-family: 'Prompt', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            padding: 12px 32px;
+            border-radius: 50px;
+        }
+
+        .cadeau-note {
+            text-align: center;
+            color: var(--gray-600);
+            font-size: 14px;
+            margin-top: 16px;
+        }
+
+        /* ── CLINIQUE ── */
+        .clinique {
+            background: var(--white);
+        }
+
+        .clinique-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--gray-100);
+            border-radius: 16px;
+            padding: 40px;
+        }
+
+        .clinique-logo {
+            flex-shrink: 0;
+            width: 140px;
+            height: 140px;
+            background: var(--white);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .clinique-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .clinique-info h3 {
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .clinique-info p {
+            font-size: 14px;
+            color: var(--gray-600);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .clinique-link {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 14px;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 2px;
+            transition: color 0.2s;
+        }
+
+        .clinique-link:hover {
+            color: var(--accent);
+        }
+
+        /* ── ETAPES ── */
+        .etapes {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .etapes .section-title {
+            color: var(--white);
+        }
+
+        .etapes .section-subtitle {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .etapes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .etape-card {
+            text-align: center;
+        }
+
+        .etape-number {
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            color: var(--dark);
+            font-family: 'Prompt', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .etape-card h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .etape-card p {
+            font-size: 13px;
+            opacity: 0.7;
+            line-height: 1.5;
+        }
+        .etape-card a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            transition: opacity 0.2s;
+        }
+        .etape-card a:hover {
+            opacity: 0.8;
+        }
+
+        .etapes-note {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 13px;
+            opacity: 0.5;
+        }
+
+        /* ── COMPTEUR ── */
+        .compteur {
+            background: var(--gray-100);
+            text-align: center;
+        }
+
+        .compteur-number {
+            font-family: 'Prompt', sans-serif;
+            font-weight: 700;
+            font-size: clamp(48px, 10vw, 80px);
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .compteur-label {
+            font-size: 18px;
+            color: var(--gray-600);
+            margin-bottom: 32px;
+        }
+
+        .progress-bar {
+            max-width: 500px;
+            margin: 0 auto 16px;
+            background: var(--gray-300);
+            border-radius: 50px;
+            height: 12px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #3dd675);
+            border-radius: 50px;
+            transition: width 1s ease;
+        }
+
+        .progress-text {
+            font-size: 14px;
+            color: var(--gray-600);
+        }
+
+        .progress-text span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* ── PALIERS ── */
+        .paliers {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 32px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .palier {
+            flex: 1;
+            background: var(--white);
+            border: 2px solid var(--gray-300);
+            border-radius: 16px;
+            padding: 20px 12px;
+            text-align: center;
+            position: relative;
+            transition: border-color 0.4s, box-shadow 0.4s, transform 0.3s;
+            opacity: 0.5;
+        }
+        .palier.unlocked {
+            opacity: 1;
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(78, 245, 137, 0.15);
+        }
+        .palier.active {
+            opacity: 1;
+            border-color: var(--accent);
+            box-shadow: 0 0 24px rgba(78, 245, 137, 0.3);
+            transform: scale(1.04);
+        }
+        .palier-seuil {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray-600);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .palier-gain {
+            font-family: 'Prompt', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+        .palier.active .palier-gain {
+            color: var(--primary);
+        }
+        .palier-badge {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 50px;
+            background: var(--gray-300);
+            color: var(--gray-600);
+        }
+        .palier.unlocked .palier-badge,
+        .palier.active .palier-badge {
+            background: var(--accent);
+            color: var(--dark);
+        }
+        .gain-actuel {
+            margin-top: 24px;
+            font-size: 15px;
+            color: var(--gray-600);
+        }
+        .gain-actuel strong {
+            color: var(--primary);
+            font-size: 18px;
+        }
+        @media (max-width: 600px) {
+            .paliers {
+                flex-direction: column;
+                gap: 12px;
+                max-width: 320px;
+            }
+        }
+
+        /* ── COUNTDOWN ── */
+        .countdown {
+            background: var(--white);
+            text-align: center;
+        }
+
+        .countdown-grid {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 40px;
+        }
+
+        .countdown-item {
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 12px;
+            padding: 20px 16px;
+            min-width: 80px;
+        }
+
+        .countdown-value {
+            font-family: 'Prompt', sans-serif;
+            font-weight: 700;
+            font-size: clamp(28px, 6vw, 40px);
+            line-height: 1;
+            display: block;
+        }
+
+        .countdown-unit {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.6;
+            margin-top: 6px;
+            display: block;
+        }
+
+        /* ── CTA FINAL ── */
+        .cta-final {
+            background: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .cta-final h2 {
+            font-size: clamp(22px, 4vw, 32px);
+            margin-bottom: 12px;
+        }
+
+        .cta-final p {
+            opacity: 0.7;
+            margin-bottom: 28px;
+            font-size: 15px;
+        }
+
+        /* ── CGU ── */
+        .cgu {
+            background: var(--gray-100);
+            padding: 48px 0;
+        }
+
+        .cgu-title {
+            font-size: 18px;
+            color: var(--primary);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .accordion {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid var(--gray-300);
+        }
+
+        .accordion-btn {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 18px 0;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark);
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-btn::after {
+            content: '+';
+            font-size: 20px;
+            color: var(--primary);
+            transition: transform 0.2s;
+        }
+
+        .accordion-btn.active::after {
+            content: '−';
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-content p {
+            padding: 0 0 18px;
+            font-size: 13px;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-logo {
+            height: 28px;
+            margin-bottom: 24px;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            font-size: 14px;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            opacity: 0.4;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 640px) {
+            .hero {
+                padding: 60px 0 48px;
+            }
+
+            .cadeau-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .etapes-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .clinique-content {
+                flex-direction: column;
+                text-align: center;
+                padding: 28px 24px;
+                gap: 24px;
+            }
+
+            .clinique-logo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .countdown-grid {
+                gap: 8px;
+            }
+
+            .countdown-item {
+                min-width: 70px;
+                padding: 16px 12px;
+            }
+
+            section {
+                padding: 48px 0;
+            }
+        }
+        @media (max-width: 640px) {
+            header .container {
+                grid-template-columns: 1fr !important;
+                justify-items: center;
+            }
+            header nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <!-- HEADER -->
+    <!-- HEADER -->
+    <header>
+        <div class="container" style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px;">
+            
+            <!-- LIENS GAUCHE -->
+            <nav style="display: flex; gap: 24px; align-items: center; justify-content: flex-end;">
+                <a href="#cadeau" style="font-size: 13px; font-weight: 600; color: var(--primary); opacity: 0.7;">Le cadeau</a>
+                <a href="#participer" style="font-size: 13px; font-weight: 600; color: var(--primary); opacity: 0.7;">Comment Participer</a>
+            </nav>
+
+            <!-- LOGO CENTRE -->
+            <a href="#" style="display: flex; justify-content: center;">
+                <img src="logo-ohm.png" alt="OHM" class="logo-header">
+            </a>
+
+            <!-- LIENS DROITE -->
+            <nav style="display: flex; gap: 24px; align-items: center; justify-content: flex-start;">
+                <a href="#compteur" style="font-size: 13px; font-weight: 600; color: var(--primary); opacity: 0.7;">Participants</a>
+                <a href="#tirage" style="font-size: 13px; font-weight: 600; color: var(--primary); opacity: 0.7;">Tirage au sort</a>
+                <a href="https://shop.ohmparis.fr/produit/kit-croissance-capillaire" target="_blank" class="btn-primary" style="font-size: 13px; padding: 10px 20px;">Je tente ma chance</a>
+            </nav>
+
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <h1>Gagne une greffe <br>ou <span>2 000&euro; en cash</span></h1>
+            <p>Pour chaque kit de croissance achet&eacute;, tu obtiens automatiquement une participation au tirage au sort.</p>
+            <a href="https://shop.ohmparis.fr/produit/kit-croissance-capillaire" target="_blank" class="btn-primary">Participer maintenant</a>
+        </div>
+    </section>
+
+    <!-- LE CADEAU -->
+    <section class="cadeau" id="cadeau">
+        <div class="container">
+            <h2 class="section-title">Le cadeau</h2>
+            <p class="section-subtitle">Le gagnant choisit son option</p>
+
+            <div class="cadeau-grid">
+                <div class="cadeau-card">
+                    <div class="cadeau-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h-2v-2h2v-2H9V9.5C9 8.12 10.12 7 11.5 7S14 8.12 14 9.5h-2c0-.28-.22-.5-.5-.5s-.5.22-.5.5V12h2v2h-2v2zm4 0h-2v-2h2v2z"/></svg>
+                    </div>
+                    <h3>Option A</h3>
+                    <p>Une greffe de cheveux ou barbe compl&egrave;te prise en charge dans une clinique partenaire</p>
+                </div>
+                <div class="cadeau-card">
+                    <div class="cadeau-icon">
+                        <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+                    </div>
+                    <h3>Option B</h3>
+                    <p>2 000&euro; en cash, vers&eacute;s directement au gagnant</p>
+                </div>
+            </div>
+
+            <div style="text-align:center">
+                <div class="badge-valeur">Valeur : 2 000&euro;</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLINIQUE PARTENAIRE -->
+    <section class="clinique">
+        <div class="container">
+            <h2 class="section-title">Clinique partenaire</h2>
+            <p class="section-subtitle">Une expertise reconnue en greffe capillaire</p>
+
+            <div class="clinique-content">
+                <div class="clinique-logo">
+                    <img src="https://cigc-marrakech.com/wp-content/uploads/2018/02/logonew-noir-CIGC.png" alt="Logo CIGC Marrakech" loading="lazy">
+                </div>
+                <div class="clinique-info">
+                    <h3>CIGC &mdash; Centre International de la Greffe de Cheveux</h3>
+                    <p>Plus de 18 ans d'exp&eacute;rience en greffe capillaire FUE. &Eacute;quipe de 6 praticiens qualifi&eacute;s &agrave; Marrakech et Casablanca. Suivi post-op&eacute;ratoire complet et consultation &agrave; distance.</p>
+                    <a href="https://cigc-marrakech.com/" target="_blank" class="clinique-link">Visiter le site de la clinique &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMENT PARTICIPER -->
+    <section class="etapes" id="participer">
+        <div class="container">
+            <h2 class="section-title">Comment participer</h2>
+            <p class="section-subtitle">3 &eacute;tapes simples, aucune inscription requise</p>
+
+            <div class="etapes-grid">
+                <div class="etape-card">
+                    <div class="etape-number">1</div>
+                    <h3>Ach&egrave;te un kit de croissance</h3>
+                    <p>Commande ton kit Ohm sur notre <a href="https://shop.ohmparis.fr/produit/kit-croissance-capillaire" target="_blank" rel="noopener">site officiel</a></p>
+                </div>
+                <div class="etape-card">
+                    <div class="etape-number">2</div>
+                    <h3>Tu es inscrit automatiquement</h3>
+                    <p>1 kit de croissance = une participation</p>
+                </div>
+                <div class="etape-card">
+                    <div class="etape-number">3</div>
+                    <h3>Double tes chances</h3>
+                    <p>Rejoins le Telegram 👉🏽 <a href="https://t.me/+bFV4f0ncVV0wMmRk" target="_blank" style="color: var(--accent); font-weight: 700;">@OHM Community</a> et <strong>double tes chances</strong> de gagner</p>
+                </div>
+            </div>
+
+            <p class="etapes-note">Pas de formulaire, pas de compte &agrave; cr&eacute;er. Tout est automatique via ta commande.</p>
+        </div>
+    </section>
+
+    <!-- COMPTEUR DE PARTICIPANTS -->
+    <section class="compteur" id="compteur">
+        <div class="container">
+            <h2 class="section-title">Participants</h2>
+            <p class="section-subtitle">Plus on est nombreux, plus le gain augmente</p>
+
+            <div class="compteur-number" id="participant-count">0</div>
+            <div class="compteur-label">participants inscrits</div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+            </div>
+
+            <div class="paliers">
+                <div class="palier" id="palier-1" data-seuil="0">
+                    <div class="palier-seuil">D&egrave;s maintenant</div>
+                    <div class="palier-gain">500&euro;</div>
+                    <div class="palier-badge">D&eacute;bloqu&eacute;</div>
+                </div>
+                <div class="palier" id="palier-2" data-seuil="300">
+                    <div class="palier-seuil">300 participants</div>
+                    <div class="palier-gain">1 000&euro;</div>
+                    <div class="palier-badge">Verrouill&eacute;</div>
+                </div>
+                <div class="palier" id="palier-3" data-seuil="500">
+                    <div class="palier-seuil">500 participants</div>
+                    <div class="palier-gain">2 000&euro; ou greffe</div>
+                    <div class="palier-badge">Verrouill&eacute;</div>
+                </div>
+            </div>
+
+            <p class="gain-actuel">Gain actuel : <strong id="gain-actuel">500&euro;</strong></p>
+        </div>
+    </section>
+
+    <!-- COMPTE A REBOURS -->
+    <section class="countdown" id="tirage">
+        <div class="container">
+            <h2 class="section-title">Tirage au sort</h2>
+            <p class="section-subtitle">Le 30 avril 2026 &agrave; minuit</p>
+
+            <div class="countdown-grid">
+                <div class="countdown-item">
+                    <span class="countdown-value" id="cd-days">00</span>
+                    <span class="countdown-unit">Jours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="cd-hours">00</span>
+                    <span class="countdown-unit">Heures</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="cd-minutes">00</span>
+                    <span class="countdown-unit">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="cd-seconds">00</span>
+                    <span class="countdown-unit">Secondes</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-final">
+        <div class="container">
+            <h2>Ne rate pas ta chance</h2>
+            <p>Commande ton kit de croissance et tente de gagner une greffe ou 2 000&euro;.</p>
+            <a href="https://shop.ohmparis.fr/produit/kit-croissance-capillaire" target="_blank" class="btn-primary">Acheter le kit de croissance</a>
+        </div>
+    </section>
+
+    <!-- CGU -->
+    <section class="cgu">
+        <div class="container">
+            <h2 class="cgu-title">Conditions g&eacute;n&eacute;rales du concours</h2>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-btn">Organisateur</button>
+                    <div class="accordion-content">
+                        <p>Le pr&eacute;sent concours est organis&eacute; par Ohm, marque sp&eacute;cialis&eacute;e dans les soins masculins.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn">Dur&eacute;e du concours</button>
+                    <div class="accordion-content">
+                        <p>Le concours se d&eacute;roule du 15 avril 2026 au 30 avril 2026 inclus. Toute commande pass&eacute;e en dehors de cette p&eacute;riode ne sera pas prise en compte.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn">Conditions de participation</button>
+                    <div class="accordion-content">
+                        <p>La participation est ouverte &agrave; toute personne physique majeure (18 ans et plus) r&eacute;sidant en France m&eacute;tropolitaine. Pour participer, il suffit d'acheter un kit de croissance sur le site officiel de la marque pendant la dur&eacute;e du concours. Chaque kit de croissance donne droit &agrave; une participation.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn">Modalit&eacute;s du tirage au sort</button>
+                    <div class="accordion-content">
+                        <p>Le gagnant sera d&eacute;sign&eacute; par tirage al&eacute;atoire informatis&eacute; parmi toutes les commandes valid&eacute;es pendant la dur&eacute;e du concours. Le tirage au sort aura lieu le 30 avril 2026.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn">Dotation</button>
+                    <div class="accordion-content">
+                        <p>Le gagnant pourra choisir entre : (A) une greffe de cheveux ou barbe compl&egrave;te prise en charge au Centre International de la Greffe de Cheveux (CIGC) &agrave; Marrakech, d'une valeur de 2 000&euro;, ou (B) la somme de 2 000&euro;. Le choix est irr&eacute;vocable une fois communiqu&eacute; &agrave; l'organisateur.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn">Communication des r&eacute;sultats</button>
+                    <div class="accordion-content">
+                        <p>Le gagnant sera annoncé le 30 avril 2026 sur le <a href="https://t.me/+bFV4f0ncVV0wMmRk" target="_blank" style="color: var(--primary); font-weight: 600; border-bottom: 1px solid var(--accent);">canal Telegram OHM</a> et sur le compte TikTok officiel de la marque. Le gagnant sera également contacté par message privé.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <img src="logoohmblanc.png" alt="OHM" class="footer-logo" style="margin-bottom: 24px;">   
+            <div class="footer-links">
+                <a href="https://shop.ohmparis.fr/" target="_blank">Boutique Officiel</a>
+                <a href="https://t.me/+bFV4f0ncVV0wMmRk" target="_blank">Telegram</a>
+            </div>
+
+            <p class="footer-copy">&copy; 2026 Ohm. Tous droits r&eacute;serv&eacute;s.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ═══════════════════════════════════════
+        // CONFIGURATION — Modifier ces valeurs
+        // ═══════════════════════════════════════
+        const CONFIG = {
+            // Base affichée au lancement (social proof)
+            // Le compteur affichera : baseParticipants + vrais participants API
+            baseParticipants: 47,
+
+            participants: 0,
+            dateTirage: '2026-05-15T00:00:00',
+            apiUrl: 'http://localhost:8042/api/participants',
+
+            // Paliers de gains
+            paliers: [
+                { seuil: 0,   gain: '500\u20ac',              label: 'D\u00e9bloqu\u00e9' },
+                { seuil: 300, gain: '1 000\u20ac',            label: '300 participants' },
+                { seuil: 500, gain: '2 000\u20ac ou greffe',  label: '500 participants' }
+            ]
+        };
+        // ═══════════════════════════════════════
+
+        // Paliers de gains
+        function updatePaliers(count) {
+            const paliers = document.querySelectorAll('.palier');
+            let currentGain = CONFIG.paliers[0].gain;
+            const maxSeuil = CONFIG.paliers[CONFIG.paliers.length - 1].seuil;
+
+            paliers.forEach((el, i) => {
+                const seuil = CONFIG.paliers[i].seuil;
+                el.classList.remove('unlocked', 'active');
+                const badge = el.querySelector('.palier-badge');
+
+                if (count >= seuil) {
+                    el.classList.add('unlocked');
+                    currentGain = CONFIG.paliers[i].gain;
+                    badge.textContent = 'D\u00e9bloqu\u00e9 \u2713';
+                } else {
+                    badge.textContent = 'Verrouill\u00e9';
+                }
+            });
+
+            // Marquer le palier actif (le plus haut d\u00e9bloqu\u00e9)
+            const unlocked = document.querySelectorAll('.palier.unlocked');
+            if (unlocked.length > 0) {
+                unlocked[unlocked.length - 1].classList.add('active');
+            }
+
+            // Gain actuel
+            document.getElementById('gain-actuel').innerHTML = currentGain;
+
+            // Barre de progression sur le dernier palier
+            const fill = document.getElementById('progress-fill');
+            const pct = Math.min((count / maxSeuil) * 100, 100);
+            fill.style.width = pct + '%';
+        }
+
+        // Compteur de participants
+        function updateParticipants(count) {
+            const el = document.getElementById('participant-count');
+
+            let current = 0;
+            const step = Math.max(1, Math.floor(count / 40));
+            const interval = setInterval(() => {
+                current = Math.min(current + step, count);
+                el.textContent = current;
+                if (current >= count) clearInterval(interval);
+            }, 30);
+
+            updatePaliers(count);
+        }
+
+        // Charger les participants depuis l'API ou la config
+        async function loadParticipants() {
+            if (CONFIG.apiUrl) {
+                try {
+                    const res = await fetch(CONFIG.apiUrl);
+                    const data = await res.json();
+                    CONFIG.participants = data.participants || 0;
+                } catch (e) {
+                    console.warn('API indisponible, utilisation de la valeur locale.');
+                }
+            }
+            // Affiche : base (social proof) + vrais participants
+            const total = CONFIG.baseParticipants + CONFIG.participants;
+            updateParticipants(total);
+        }
+
+        // Compte à rebours
+        function updateCountdown() {
+            const target = new Date(CONFIG.dateTirage).getTime();
+            const now = Date.now();
+            const diff = Math.max(0, target - now);
+
+            const d = Math.floor(diff / 86400000);
+            const h = Math.floor((diff % 86400000) / 3600000);
+            const m = Math.floor((diff % 3600000) / 60000);
+            const s = Math.floor((diff % 60000) / 1000);
+
+            document.getElementById('cd-days').textContent = String(d).padStart(2, '0');
+            document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
+            document.getElementById('cd-minutes').textContent = String(m).padStart(2, '0');
+            document.getElementById('cd-seconds').textContent = String(s).padStart(2, '0');
+
+            if (diff > 0) requestAnimationFrame(() => setTimeout(updateCountdown, 1000));
+        }
+
+        // Accordéon CGU
+        document.querySelectorAll('.accordion-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                const isOpen = btn.classList.contains('active');
+
+                // Fermer tous les autres
+                document.querySelectorAll('.accordion-btn.active').forEach(b => {
+                    b.classList.remove('active');
+                    b.nextElementSibling.style.maxHeight = null;
+                });
+
+                if (!isOpen) {
+                    btn.classList.add('active');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            });
+        });
+
+        // Init
+        loadParticipants();
+        updateCountdown();
+    </script>
+</body>
+</html>
