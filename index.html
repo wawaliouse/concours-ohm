@@ -698,14 +698,79 @@
                 padding: 48px 0;
             }
         }
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
             header .container {
-                grid-template-columns: 1fr !important;
-                justify-items: center;
+                display: flex !important;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0;
             }
-            header nav {
-                display: none;
+            header .nav-desktop {
+                display: none !important;
             }
+            .burger-btn {
+                display: flex !important;
+            }
+            .mobile-menu.open {
+                display: flex;
+            }
+        }
+
+        /* ── BURGER ── */
+        .burger-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 200;
+        }
+        .burger-btn span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 2px;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+        .burger-btn.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .burger-btn.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .burger-btn.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ── MENU MOBILE ── */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--white);
+            z-index: 150;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+        }
+        .mobile-menu a {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .mobile-menu .btn-primary {
+            color: var(--white);
+            font-size: 16px;
+            padding: 14px 32px;
         }
     </style>
 </head>
@@ -716,9 +781,9 @@
     <!-- HEADER -->
     <header>
         <div class="container" style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px;">
-            
+
             <!-- LIENS GAUCHE -->
-            <nav style="display: flex; gap: 24px; align-items: center; justify-content: flex-end;">
+            <nav class="nav-desktop" style="display: flex; gap: 24px; align-items: center; justify-content: flex-end;">
                 <a href="#cadeau" style="font-size: 13px; font-weight: 600; color: var(--primary); opacity: 0.7;">Le cadeau</a>
                 <a href="#participer" style="font-size: 13px; font-weight: 600; color: var(--primary); opacity: 0.7;">Comment Participer</a>
             </nav>
@@ -729,14 +794,27 @@
             </a>
 
             <!-- LIENS DROITE -->
-            <nav style="display: flex; gap: 24px; align-items: center; justify-content: flex-start;">
+            <nav class="nav-desktop" style="display: flex; gap: 24px; align-items: center; justify-content: flex-start;">
                 <a href="#compteur" style="font-size: 13px; font-weight: 600; color: var(--primary); opacity: 0.7;">Participants</a>
                 <a href="#tirage" style="font-size: 13px; font-weight: 600; color: var(--primary); opacity: 0.7;">Tirage au sort</a>
                 <a href="https://shop.ohmparis.fr/produit/kit-croissance-capillaire" target="_blank" class="btn-primary" style="font-size: 13px; padding: 10px 20px;">Je tente ma chance</a>
             </nav>
 
+            <!-- BURGER (mobile) -->
+            <button class="burger-btn" id="burger-btn" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </header>
+
+    <!-- MENU MOBILE (plein écran) -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#cadeau" onclick="closeMobile()">Le cadeau</a>
+        <a href="#participer" onclick="closeMobile()">Comment Participer</a>
+        <a href="#compteur" onclick="closeMobile()">Participants</a>
+        <a href="#tirage" onclick="closeMobile()">Tirage au sort</a>
+        <a href="https://shop.ohmparis.fr/produit/kit-croissance-capillaire" target="_blank" class="btn-primary">Je tente ma chance</a>
+    </div>
 
     <!-- HERO -->
     <section class="hero">
@@ -1078,6 +1156,22 @@
                 }
             });
         });
+
+        // Menu mobile
+        const burgerBtn = document.getElementById('burger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        burgerBtn.addEventListener('click', () => {
+            burgerBtn.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+            document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+        });
+
+        function closeMobile() {
+            burgerBtn.classList.remove('open');
+            mobileMenu.classList.remove('open');
+            document.body.style.overflow = '';
+        }
 
         // Init
         loadParticipants();
