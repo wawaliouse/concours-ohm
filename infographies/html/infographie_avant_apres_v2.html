@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@600;700;800&family=Montserrat:wght@400;500;600;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  width: 1000px;
+  height: 1000px;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  background: #ebedf4;
+}
+
+.container {
+  width: 1000px;
+  height: 1000px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+.header {
+  background: #061a59;
+  padding: 28px 40px 24px;
+  text-align: center;
+  position: relative;
+}
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #4ef589;
+}
+.header h1 {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 800;
+  font-size: 44px;
+  color: #ffffff;
+  letter-spacing: 2px;
+  line-height: 1.1;
+}
+.header h1 span {
+  color: #4ef589;
+}
+
+/* PHOTOS AREA */
+.photos {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 20px;
+}
+
+.photo-row {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(6,26,89,0.15);
+}
+
+.photo-row img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+}
+
+/* Duration badge */
+.duration-badge {
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  background: #4ef589;
+  color: #09130c;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  padding: 12px 20px;
+  border-radius: 24px;
+  text-align: center;
+  line-height: 1.2;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.3);
+  letter-spacing: 0.5px;
+}
+.duration-badge small {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  opacity: 1;
+}
+
+/* Date labels */
+.date-labels {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  pointer-events: none;
+}
+.date-label {
+  flex: 1;
+  padding: 8px 16px;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7), 0 0px 3px rgba(0,0,0,0.5);
+  background: linear-gradient(transparent, rgba(0,0,0,0.55));
+}
+.date-label.avant { text-align: left; }
+.date-label.apres { text-align: right; }
+
+/* Placeholder row */
+.photo-placeholder {
+  flex: 1;
+  background: #c0c4d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* BANNER */
+.banner {
+  background: #4ef589;
+  padding: 16px 40px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.banner span {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: #09130c;
+  letter-spacing: 1.5px;
+}
+.banner .dot {
+  width: 5px;
+  height: 5px;
+  background: #061a59;
+  border-radius: 50%;
+  display: inline-block;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>ILS L'ONT FAIT.<br><span>POURQUOI PAS TOI ?</span></h1>
+  </div>
+
+  <div class="photos">
+    <div class="photo-row" id="row1">
+      <img id="img1" alt="Avant/Après 1" src="../../images/6M.png">
+      <div class="duration-badge">6 MOIS<small>DE CURE</small></div>
+    </div>
+
+    <div class="photo-row" id="row2">
+      <img id="img1" alt="Avant/Après 1" src="../../images/4M.png">
+      <div class="duration-badge">4 MOIS<small>DE CURE</small></div>
+    </div>
+
+    <div class="photo-row" id="row3">
+      <img id="img2" alt="Avant/Après 3" src="../../images/3M.png">
+      <div class="duration-badge">3 MOIS<small>DE CURE</small></div>
+    </div>
+  </div>
+
+  <div class="banner">
+    <span>RÉSULTATS VISIBLES DÈS LES PREMIERS MOIS • VRAIES PHOTOS CLIENTS NON RETOUCHÉES</span>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@600;700;800&family=Montserrat:wght@400;500;600;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  width: 1000px;
+  height: 1000px;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  background: #ebedf4;
+}
+
+.container {
+  width: 1000px;
+  height: 1000px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+.header {
+  background: #061a59;
+  padding: 16px 40px 12px;
+  text-align: center;
+  position: relative;
+  flex-shrink: 0;
+}
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: #4ef589;
+}
+.header h1 {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 800;
+  font-size: 44px;
+  color: #fff;
+  letter-spacing: 2px;
+}
+.header h1 span { color: #4ef589; }
+
+/* CHOOSE */
+.choose {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px 16px;
+  background: #ebedf4;
+  flex-shrink: 0;
+}
+.choose-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 7px 16px;
+  box-shadow: 0 2px 6px rgba(6,26,89,0.08);
+}
+.cdot { width: 12px; height: 12px; border-radius: 50%; }
+.cdot.g { background: #4ef589; }
+.cdot.b { background: #061a59; }
+.choose-pill strong {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: #061a59;
+}
+.choose-pill small {
+  font-size: 14px;
+  color: #061a59; opacity: 0.75;
+  font-weight: 600;
+}
+
+/* COLUMN HEADERS */
+.col-headers {
+  display: flex;
+  padding: 0 14px;
+  gap: 0px;
+  flex-shrink: 0;
+  margin-top: 8px;
+  margin-left: 62px;
+}
+.col-h {
+  flex: 1;
+  text-align: center;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 1px;
+  padding: 9px;
+  border-radius: 10px 10px 0 0;
+}
+.col-h.g {
+  background: #4ef589;
+  color: #09130c;
+  border-radius: 10px 0 0 0; /* arrondi haut-gauche seulement */
+}
+.col-h.b {
+  background: #061a59;
+  color: #fff;
+  border-radius: 0 10px 0 0; /* arrondi haut-droit seulement */
+}
+
+/* MAIN CONTENT */
+.content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0 14px 8px;
+  gap: 0;
+}
+
+/* SECTION ROW = vertical label + two columns */
+.section-row {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  gap: 6px;
+  border-bottom: 2px solid #061a59;
+  padding-bottom: 0px;
+}
+.section-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Vertical time label */
+.time-vert {
+  width: 56px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex-shrink: 0;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  align-self: center; /* ← centre verticalement */
+  height: 80%; /* ← ajuste ce pourcentage */
+}
+.time-vert.matin { 
+  background: rgba(78,245,137,0.12);
+}
+.time-vert.soir { 
+  background: rgba(6,26,89,0.08);
+}
+.time-vert.hebdo { 
+  background: #fde8e8;
+}
+
+.time-vert .tname {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  color: #061a59;
+  letter-spacing: 3px;
+  transform: rotate(180deg);
+}
+
+/* Two product columns */
+.two-cols {
+  flex: 1;
+  display: flex;
+  gap: 0;
+  min-height: 0;
+}
+.two-cols > *:first-child {
+  border-right: 2px solid #061a59;
+  padding-right: 6px;
+  border-radius: 0;
+}
+.two-cols > *:last-child {
+  padding-left: 6px;
+}
+
+.col-products {
+  flex: 1;
+  background: #ebedf4;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px;
+  justify-content: center;
+}
+
+/* PRODUCT CARD */
+.prod {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ebedf4;
+  border-radius: 10px;
+  padding: 12px 12px;
+  flex: 1;
+}
+.prod-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.prod-icon.spray { background: rgba(78,245,137,0.15); }
+.prod-icon.huile { background: rgba(78,245,137,0.10); }
+.prod-icon.brosse { background: rgba(6,26,89,0.08); }
+.prod-icon.derma { background: rgba(6,26,89,0.08); }
+.prod-icon svg { width: 28px; height: 28px; }
+.prod-icon img { width: 100%; height: 100%; object-fit: contain; border-radius: 10px; }
+
+/* Single block: one grey bg, multiple product rows inside */
+.single-block {
+  background: #ebedf4;
+  padding: 0;
+  gap: 0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.single-block .prod-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 12px;
+  flex: 1;
+  border-bottom: none;
+}
+.single-block .prod-row:last-child {
+  border-bottom: none;
+}
+
+.prod-info { flex: 1; min-width: 0; }
+.prod-name {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #061a59;
+  line-height: 1.15;
+}
+.prod-detail {
+  font-size: 16px;
+  color: rgba(6,26,89,0.75);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* Frequency badge (inline) */
+.freq {
+  display: inline-block;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  margin-top: 3px;
+  letter-spacing: 0.3px;
+}
+.freq.daily { background: #4ef589; color: #09130c; }
+.freq.alt { background: #061a59; color: #fff; }
+.freq.weekly { background: #061a59; color: #4ef589; }
+
+/* Frequency vertical strip */
+.col-wrap {
+  flex: 1;
+  display: flex;
+  gap: 0;
+  min-height: 0;
+}
+.col-wrap .col-products {
+  flex: 1;
+  border-radius: 12px 0 0 12px;
+}
+.freq-strip {
+  width: 44px;
+  border-radius: 0 12px 12px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  flex-shrink: 0;
+}
+.freq-strip span {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 2px;
+  transform: rotate(180deg);
+  white-space: nowrap;
+}
+.freq-strip.daily { background: #ebedf4; }
+.freq-strip.daily span { color: #061a59; }
+.freq-strip.alt { background: #ebedf4; }
+.freq-strip.alt span { color: #061a59; }
+.freq-strip.weekly { background: #ebedf4; }
+.freq-strip.weekly span { color: #061a59; }
+
+/* Disabled column */
+.col-disabled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.no-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  opacity: 0.5;
+}
+.no-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #fde8e8;
+  color: #d32f2f;
+  font-size: 28px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.no-text {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #d32f2f;
+}
+
+/* BANNER */
+.banner {
+  background: #4ef589;
+  padding: 14px 30px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.banner span {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #09130c;
+  letter-spacing: 2px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>MODE <span>D'EMPLOI</span></h1>
+  </div>
+
+  <div class="choose">
+    <div class="choose-pill">
+      <div class="cdot g"></div>
+      <strong>PRÉVENTION</strong>
+      <small>— Prévenir la chute de cheveux</small>
+    </div>
+    <div class="choose-pill">
+      <div class="cdot b"></div>
+      <strong>RÉCUPÉRATION</strong>
+      <small>— Récupérer les cheveux perdus</small>
+    </div>
+  </div>
+
+  <!-- Column headers -->
+  <div class="col-headers">
+    <div class="col-h g">PRÉVENTION</div>
+    <div class="col-h b">RÉCUPÉRATION</div>
+  </div>
+
+  <div class="content">
+
+    <!-- ☀️ MATIN -->
+    <div class="section-row">
+      <div class="time-vert matin">
+        <div class="tname">MATIN</div>
+      </div>
+      <div class="two-cols">
+        <div class="col-wrap">
+          <div class="col-products">
+            <div class="prod">
+              <div class="prod-icon spray">
+                <img src="../assets/sb.png">
+              </div>
+              <div class="prod-info">
+                <div class="prod-name">Spray Booster</div>
+                <div class="prod-detail">4 à 6 pulvérisations directement sur le cuir chevelu.
+Masser doucement pendant 1 minute.</div>
+              </div>
+            </div>
+          </div>
+          <div class="freq-strip daily"><span>TOUS LES JOURS</span></div>
+        </div>
+        <div class="col-wrap">
+          <div class="col-products single-block">
+            <div class="prod-row">
+              <div class="prod-icon brosse">
+                <img src="../assets/bs.png">
+              </div>
+              <div class="prod-info">
+                <div class="prod-name">Brosse Stimulante</div>
+                <div class="prod-detail">Avant le spray, sur cuir chevelu sec, brosser en mouvements 
+circulaires pendant 1 minute.</div>
+              </div>
+            </div>
+            <div class="prod-row">
+              <div class="prod-icon spray">
+                <img src="../assets/sb.png">
+              </div>
+              <div class="prod-info">
+                <div class="prod-name">Spray Booster</div>
+                <div class="prod-detail">4 à 6 pulvérisations directement sur le cuir chevelu.
+Masser doucement pendant 1 minute.</div>
+              </div>
+            </div>
+          </div>
+          <div class="freq-strip daily"><span>TOUS LES JOURS</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🌙 SOIR -->
+    <div class="section-row">
+      <div class="time-vert soir">
+        <div class="tname">SOIR</div>
+      </div>
+      <div class="two-cols">
+        <div class="col-wrap">
+          <div class="col-products">
+            <div class="prod">
+              <div class="prod-icon huile">
+                <img src="../assets/hgo.png">
+              </div>
+              <div class="prod-info">
+                <div class="prod-name">Huile de Croissance</div>
+                <div class="prod-detail">Appliquer 2 ml sur les zones clairsemées.
+Masser doucement pendant 2 minutes.</div>
+              </div>
+            </div>
+          </div>
+          <div class="freq-strip alt"><span>1 JOUR SUR 2</span></div>
+        </div>
+        <div class="col-wrap">
+          <div class="col-products single-block">
+            <div class="prod-row">
+              <div class="prod-icon huile">
+                <img src="../assets/hgo.png">
+              </div>
+              <div class="prod-info">
+                <div class="prod-name">Huile de Croissance</div>
+                <div class="prod-detail">Appliquer 2 ml sur les zones clairsemées.</div>
+              </div>
+            </div>
+            <div class="prod-row">
+              <div class="prod-icon brosse">
+                <img src="../assets/bs.png">
+              </div>
+              <div class="prod-info">
+                <div class="prod-name">Brosse Stimulante</div>
+                <div class="prod-detail">Après l'huile, brosser en mouvements 
+circulaires pendant 3 minute.</div>
+              </div>
+            </div>
+          </div>
+          <div class="freq-strip daily"><span>TOUS LES JOURS</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🔄 MICRONEEDLING -->
+    <div class="section-row">
+      <div class="time-vert hebdo">
+        <div class="tname">HEBDO</div>
+      </div>
+      <div class="two-cols">
+        <div class="col-wrap">
+          <div class="col-products col-disabled">
+            <div class="no-item">
+              <div class="no-icon">✕</div>
+              <div class="no-text">Pas de microneedling</div>
+            </div>
+          </div>
+          <div class="freq-strip" style="visibility:hidden;"><span></span></div>
+        </div>
+        <div class="col-wrap">
+          <div class="col-products">
+            <div class="prod">
+              <div class="prod-icon derma">
+                <img src="../assets/dmr.png">
+              </div>
+              <div class="prod-info">
+                <div class="prod-name">Dermaroller 1.5mm</div>
+                <div class="prod-detail">Désinfecter à l'alcool 70° avant et après.
+Rouler doucement sur les zones à traiter.
+Ni produits ni brosse stimulante pendant 24h.</div>
+              </div>
+            </div>
+          </div>
+          <div class="freq-strip weekly"><span>1X / SEMAINE</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="banner">
+    <span>PROTOCOLE DÉTAILLÉ INCLUS AVEC VOTRE COMMANDE</span>
+  </div>
+
+</div>
+</body>
+</html>

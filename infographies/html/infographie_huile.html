@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@600;700;800&family=Montserrat:wght@400;500;600;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  width: 1000px;
+  height: 1000px;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  background: #ebedf4;
+}
+
+.container {
+  width: 1000px;
+  height: 1000px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+.header {
+  background: #061a59;
+  padding: 28px 40px 22px;
+  text-align: center;
+  position: relative;
+  flex-shrink: 0;
+}
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #4ef589;
+}
+.header h1 {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 800;
+  font-size: 44px;
+  color: #ffffff;
+  letter-spacing: 3px;
+  line-height: 1.1;
+}
+.header .subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #4ef589;
+  letter-spacing: 2px;
+  margin-top: 6px;
+}
+
+/* MAIN SECTION */
+.main {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  padding: 24px 36px;
+  gap: 0;
+  min-height: 0;
+}
+
+/* LEFT: AVANTAGES */
+.avantages {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  padding-right: 20px;
+}
+.avantage {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px 18px;
+  box-shadow: 0 2px 8px rgba(6,26,89,0.06);
+}
+.avantage-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #061a59;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.avantage-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: #4ef589;
+}
+.avantage-text {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: #061a59;
+  line-height: 1.2;
+}
+.avantage-text small {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #061a59;
+  opacity: 0.75;
+  margin-top: 2px;
+}
+
+/* CENTER: PRODUCT */
+.product-zone {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.product-glow {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(78,245,137,0.12) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.product-zone img {
+  position: relative;
+  max-height: 460px;
+  max-width: 320px;
+  object-fit: contain;
+  z-index: 1;
+}
+.product-badge {
+  position: relative;
+  z-index: 1;
+  margin-top: 12px;
+  background: #061a59;
+  color: #4ef589;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 2px;
+  padding: 8px 20px;
+  border-radius: 20px;
+}
+
+/* RIGHT: STATS */
+.stats {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  padding-left: 20px;
+}
+.stat {
+  background: #061a59;
+  border-radius: 14px;
+  padding: 18px 18px;
+  text-align: center;
+}
+.stat-value {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 800;
+  font-size: 36px;
+  color: #4ef589;
+  line-height: 1;
+}
+.stat-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+  opacity: 1;
+  margin-top: 4px;
+  line-height: 1.2;
+}
+
+/* INGREDIENTS SECTION */
+.ingredients {
+  background: #fff;
+  padding: 20px 36px;
+  flex-shrink: 0;
+}
+.ingredients-title {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 800;
+  font-size: 24px;
+  color: #061a59;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 14px;
+}
+.ingredients-list {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.ingredient-pill {
+  background: #061a59;
+  color: #fff;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  padding: 12px 22px;
+  border-radius: 30px;
+  letter-spacing: 1px;
+}
+
+/* BANNER */
+.banner {
+  background: #061a59;
+  padding: 14px 40px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.banner span {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #4ef589;
+  letter-spacing: 3px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>HUILE DE CROISSANCE</h1>
+    <div class="subtitle">FORMULE NATURELLE · PARFUM FRAIS</div>
+  </div>
+
+  <!-- MAIN: Avantages + Produit + Stats -->
+  <div class="main">
+
+    <!-- Avantages -->
+    <div class="avantages">
+      <div class="avantage">
+        <div class="avantage-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-5-5 1.41-1.41L11 14.17l7.59-7.59L20 8l-9 9z"/></svg>
+        </div>
+        <div class="avantage-text">
+          Bloque la DHT
+          <small>Stoppe la cause n°1 de la chute</small>
+        </div>
+      </div>
+      <div class="avantage">
+        <div class="avantage-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-5-5 1.41-1.41L11 14.17l7.59-7.59L20 8l-9 9z"/></svg>
+        </div>
+        <div class="avantage-text">
+          Anti-chute
+          <small>Renforce l'ancrage du cheveu</small>
+        </div>
+      </div>
+      <div class="avantage">
+        <div class="avantage-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-5-5 1.41-1.41L11 14.17l7.59-7.59L20 8l-9 9z"/></svg>
+        </div>
+        <div class="avantage-text">
+          Accélère la pousse
+          <small>Stimule les follicules pileux</small>
+        </div>
+      </div>
+      <div class="avantage">
+        <div class="avantage-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-5-5 1.41-1.41L11 14.17l7.59-7.59L20 8l-9 9z"/></svg>
+        </div>
+        <div class="avantage-text">
+          Densifie le cheveu
+          <small>Volume et épaisseur visibles</small>
+        </div>
+      </div>
+      <div class="avantage">
+        <div class="avantage-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-5-5 1.41-1.41L11 14.17l7.59-7.59L20 8l-9 9z"/></svg>
+        </div>
+        <div class="avantage-text">
+          Hydrate & apaise
+          <small>Nourrit le cuir chevelu</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Produit -->
+    <div class="product-zone">
+      <img src="../assets/hgo.png" alt="Huile de Croissance OHM">
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value">11</div>
+        <div class="stat-label">actifs<br>dans la formule</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">2 ML</div>
+        <div class="stat-label">suffisent<br>par application</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">+50</div>
+        <div class="stat-label">jours d'utilisation<br>par flacon</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- INGREDIENTS -->
+  <div class="ingredients">
+    <div class="ingredients-title">INGRÉDIENTS CLÉS</div>
+    <div class="ingredients-list">
+      <div class="ingredient-pill">Nigelle</div>
+      <div class="ingredient-pill">Romarin</div>
+      <div class="ingredient-pill">Palmier Nain</div>
+      <div class="ingredient-pill">Pépin de Courge</div>
+      <div class="ingredient-pill">Ricin</div>
+    </div>
+  </div>
+
+  <!-- BANNER -->
+  <div class="banner">
+    <span>SANS SILICONES NI PARABÈNES</span>
+  </div>
+
+</div>
+</body>
+</html>

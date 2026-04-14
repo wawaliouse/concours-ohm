@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@600;700;800&family=Montserrat:wght@400;500;600;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  width: 1000px;
+  height: 1000px;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  background: #ebedf4;
+}
+
+.container {
+  width: 1000px;
+  height: 1000px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+.header {
+  background: #061a59;
+  padding: 28px 40px 24px;
+  text-align: center;
+  position: relative;
+  flex-shrink: 0;
+}
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #4ef589;
+}
+.header h1 {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 800;
+  font-size: 48px;
+  color: #ffffff;
+  letter-spacing: 3px;
+  line-height: 1.1;
+}
+.header h1 span {
+  color: #4ef589;
+}
+
+/* SUBTITLE */
+.subtitle {
+  text-align: center;
+  padding: 16px 40px 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #061a59;
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+/* TABLE */
+.table {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 30px;
+  gap: 0;
+}
+
+/* TABLE HEADER ROW */
+.table-header {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  flex-shrink: 0;
+}
+.table-header .col-label {
+  width: 50%;
+  flex-shrink: 0;
+}
+.table-header .col-pack {
+  width: 25%;
+  flex-shrink: 0;
+  text-align: center;
+  padding: 18px 10px;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 800;
+  font-size: 24px;
+  letter-spacing: 1px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.table-header .col-pack.prev {
+  background: #4ef589;
+  color: #09130c;
+  border-radius: 14px 0 0 0;
+}
+.table-header .col-pack.recup {
+  background: #061a59;
+  color: #fff;
+  border-radius: 0 14px 0 0;
+}
+.table-header .col-pack small {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  opacity: 1;
+  letter-spacing: 0;
+}
+
+/* TABLE ROW */
+.table-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-bottom: 1.5px solid rgba(6,26,89,0.08);
+  flex: 1;
+}
+.table-row:last-child {
+  border-bottom: none;
+}
+
+/* Product cell */
+.cell-product {
+  width: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  height: 100%;
+}
+.cell-product .prod-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.cell-product .prod-img img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.cell-product .prod-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.cell-product .prod-name {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  color: #061a59;
+}
+.cell-product .prod-detail {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  color: #061a59;
+  opacity: 0.75;
+}
+
+/* Check / Cross cells */
+.cell-check {
+  width: 25%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 14px 0;
+}
+.cell-check.prev-bg {
+  background: rgba(78,245,137,0.06);
+}
+.cell-check.recup-bg {
+  background: rgba(6,26,89,0.04);
+}
+
+.check-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 800;
+}
+.check-icon.yes {
+  background: #4ef589;
+  color: #09130c;
+}
+.check-icon.no {
+  background: rgba(211,47,47,0.1);
+  color: #d32f2f;
+}
+
+/* BANNER */
+.banner {
+  background: #061a59;
+  padding: 14px 24px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.banner span {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #4ef589;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>CONTENU <span>DES PACKS</span></h1>
+  </div>
+
+  <div class="subtitle">Choisissez le pack adapté à votre besoin</div>
+
+  <div class="table">
+    <!-- Header -->
+    <div class="table-header">
+      <div class="col-label"></div>
+      <div class="col-pack prev">
+        PRÉVENTION
+        <small>2 produits</small>
+      </div>
+      <div class="col-pack recup">
+        RÉCUPÉRATION
+        <small>4 produits</small>
+      </div>
+    </div>
+
+    <!-- Spray Booster -->
+    <div class="table-row">
+      <div class="cell-product">
+        <div class="prod-img">
+          <img src="../assets/sb.png">
+        </div>
+        <div class="prod-info">
+          <div class="prod-name">Spray Booster</div>
+          <div class="prod-detail">200 ml</div>
+        </div>
+      </div>
+      <div class="cell-check prev-bg">
+        <div class="check-icon yes">✓</div>
+      </div>
+      <div class="cell-check recup-bg">
+        <div class="check-icon yes">✓</div>
+      </div>
+    </div>
+
+    <!-- Huile de Croissance -->
+    <div class="table-row">
+      <div class="cell-product">
+        <div class="prod-img">
+          <img src="../assets/hgo.png">
+        </div>
+        <div class="prod-info">
+          <div class="prod-name">Huile de Croissance</div>
+          <div class="prod-detail">100 ml</div>
+        </div>
+      </div>
+      <div class="cell-check prev-bg">
+        <div class="check-icon yes">✓</div>
+      </div>
+      <div class="cell-check recup-bg">
+        <div class="check-icon yes">✓</div>
+      </div>
+    </div>
+
+    <!-- Brosse Stimulante -->
+    <div class="table-row">
+      <div class="cell-product">
+        <div class="prod-img">
+          <img src="../assets/bs.png">
+        </div>
+        <div class="prod-info">
+          <div class="prod-name">Brosse Stimulante</div>
+          <div class="prod-detail">Picots en silicone</div>
+        </div>
+      </div>
+      <div class="cell-check prev-bg">
+        <div class="check-icon no">✕</div>
+      </div>
+      <div class="cell-check recup-bg">
+        <div class="check-icon yes">✓</div>
+      </div>
+    </div>
+
+    <!-- Dermaroller -->
+    <div class="table-row">
+      <div class="cell-product">
+        <div class="prod-img">
+          <img src="../assets/dmr.png">
+        </div>
+        <div class="prod-info">
+          <div class="prod-name">Dermaroller</div>
+          <div class="prod-detail">1.5 mm</div>
+        </div>
+      </div>
+      <div class="cell-check prev-bg">
+        <div class="check-icon no">✕</div>
+      </div>
+      <div class="cell-check recup-bg">
+        <div class="check-icon yes">✓</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="banner">
+    <span>Protocole d'utilisation inclus avec votre commande</span>
+  </div>
+
+</div>
+</body>
+</html>
