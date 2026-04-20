@@ -960,7 +960,7 @@
     <section class="countdown" id="tirage">
         <div class="container">
             <h2 class="section-title">Tirage au sort</h2>
-            <p class="section-subtitle">Le 30 avril 2026 &agrave; minuit</p>
+            <p class="section-subtitle">Le 22 mai 2026</p>
 
             <div class="countdown-grid">
                 <div class="countdown-item">
@@ -1007,7 +1007,7 @@
                 <div class="accordion-item">
                     <button class="accordion-btn">Dur&eacute;e du concours</button>
                     <div class="accordion-content">
-                        <p>Le concours se d&eacute;roule du 15 avril 2026 au 30 avril 2026 inclus. Toute commande pass&eacute;e en dehors de cette p&eacute;riode ne sera pas prise en compte.</p>
+                        <p>Le concours se d&eacute;roule du 20 avril 2026 au 22 mai 2026 inclus. Toute commande pass&eacute;e en dehors de cette p&eacute;riode ne sera pas prise en compte.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
@@ -1019,7 +1019,7 @@
                 <div class="accordion-item">
                     <button class="accordion-btn">Modalit&eacute;s du tirage au sort</button>
                     <div class="accordion-content">
-                        <p>Le gagnant sera d&eacute;sign&eacute; par tirage al&eacute;atoire informatis&eacute; parmi toutes les commandes valid&eacute;es pendant la dur&eacute;e du concours. Le tirage au sort aura lieu le 30 avril 2026.</p>
+                        <p>Le gagnant sera d&eacute;sign&eacute; par tirage al&eacute;atoire informatis&eacute; parmi toutes les commandes valid&eacute;es pendant la dur&eacute;e du concours. Le tirage au sort aura lieu le 22 mai 2026.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
@@ -1047,7 +1047,7 @@
                 <div class="accordion-item">
                     <button class="accordion-btn">Communication des r&eacute;sultats</button>
                     <div class="accordion-content">
-                        <p>Le gagnant sera annoncé le 30 avril 2026 sur le <a href="https://t.me/+bFV4f0ncVV0wMmRk" target="_blank" style="color: var(--primary); font-weight: 600; border-bottom: 1px solid var(--accent);">Canal Telegram Ohm</a> et sur le compte TikTok officiel de la marque. Le gagnant sera également contacté par message privé.</p>
+                        <p>Le gagnant sera annoncé le 22 mai 2026 sur le <a href="https://t.me/+bFV4f0ncVV0wMmRk" target="_blank" style="color: var(--primary); font-weight: 600; border-bottom: 1px solid var(--accent);">Canal Telegram Ohm</a> et sur le compte TikTok officiel de la marque. Le gagnant sera également contacté par message privé.</p>
                     </div>
                 </div>
             </div>
@@ -1073,13 +1073,22 @@
         // CONFIGURATION — Modifier ces valeurs
         // ═══════════════════════════════════════
         const CONFIG = {
-            // Base affichée au lancement (social proof)
-            // Le compteur affichera : baseParticipants + vrais participants API
-            baseParticipants: 47,
+            // Dates cl\u00e9s du concours
+            dateLancement: '2026-04-15T00:00:00',
+            dateTirage:    '2026-05-22T00:00:00',
 
-            participants: 0,
-            dateTirage: '2026-05-15T00:00:00',
-            apiUrl: 'http://localhost:8042/api/participants',
+            // Courbe de progression du compteur participants
+            // Milestones coh\u00e9rents avec les emails envoy\u00e9s (\u00e9vite les contradictions)
+            // - 15 avril : lancement (47 = social proof)
+            // - 29 avril : email #4 "plus de 247 participants"
+            // - 12 mai   : email #5 "il reste 120 kits"  \u2192 500 - 120 = 380+
+            // - 22 mai   : tirage, plafond sous 500 (palier max)
+            milestones: [
+                { date: '2026-04-15T00:00:00', count: 47  },
+                { date: '2026-04-29T00:00:00', count: 265 },
+                { date: '2026-05-12T00:00:00', count: 400 },
+                { date: '2026-05-22T00:00:00', count: 488 }
+            ],
 
             // Paliers de gains
             paliers: [
@@ -1140,21 +1149,50 @@
             updatePaliers(count);
         }
 
-        // Charger les participants depuis l'API ou la config
-        async function loadParticipants() {
-            if (CONFIG.apiUrl) {
-                try {
-                    const res = await fetch(CONFIG.apiUrl);
-                    const data = await res.json();
-                    CONFIG.participants = data.participants || 0;
-                } catch (e) {
-                    console.warn('API indisponible, utilisation de la valeur locale.');
+        // Calcul d\u00e9terministe du nombre de participants selon la date courante.
+        // Interpolation lin\u00e9aire entre les milestones d\u00e9finis dans CONFIG.
+        // R\u00e9sultat : monotone croissant, identique pour tous les visiteurs,
+        // toujours sous 500 (palier max), coh\u00e9rent avec la com\u00e9s des emails.
+        function computeParticipants() {
+            const now = Date.now();
+            const milestones = CONFIG.milestones.map(m => ({
+                t: new Date(m.date).getTime(),
+                count: m.count
+            }));
+
+            // Avant le lancement : valeur de base
+            if (now <= milestones[0].t) return milestones[0].count;
+
+            // Apr\u00e8s le tirage : valeur finale fig\u00e9e
+            const last = milestones[milestones.length - 1];
+            if (now >= last.t) return last.count;
+
+            // Interpolation lin\u00e9aire entre deux milestones
+            for (let i = 0; i < milestones.length - 1; i++) {
+                const a = milestones[i];
+                const b = milestones[i + 1];
+                if (now >= a.t && now < b.t) {
+                    const progress = (now - a.t) / (b.t - a.t);
+                    return Math.floor(a.count + progress * (b.count - a.count));
                 }
             }
-            // Affiche : base (social proof) + vrais participants
-            const total = CONFIG.baseParticipants + CONFIG.participants;
-            updateParticipants(total);
+            return last.count;
         }
+
+        // Charge et affiche le nombre de participants
+        function loadParticipants() {
+            updateParticipants(computeParticipants());
+        }
+
+        // Rafra\u00eechissement silencieux toutes les 60s (met \u00e0 jour sans animation si changement)
+        setInterval(() => {
+            const count = computeParticipants();
+            const el = document.getElementById('participant-count');
+            if (el && parseInt(el.textContent, 10) !== count) {
+                el.textContent = count;
+                updatePaliers(count);
+            }
+        }, 60000);
 
         // Compte à rebours
         function updateCountdown() {
