@@ -953,6 +953,19 @@
             </div>
 
             <p class="gain-actuel">Gain actuel : <strong id="gain-actuel">500&euro;</strong></p>
+
+            <div style="margin-top: 20px; max-width: 480px; margin-left: auto; margin-right: auto;">
+                <button onclick="this.classList.toggle('open'); this.nextElementSibling.style.maxHeight = this.classList.contains('open') ? this.nextElementSibling.scrollHeight + 'px' : '0';"
+                    style="background: none; border: none; cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 11px; color: var(--gray-600); opacity: 0.6; font-family: 'Montserrat', sans-serif; padding: 4px 0;">
+                    <span>* Compteur indicatif</span>
+                    <svg style="width:12px;height:12px;flex-shrink:0;transition:transform 0.3s;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div style="max-height: 0; overflow: hidden; transition: max-height 0.35s ease;">
+                    <p style="font-size: 11px; color: var(--gray-600); opacity: 0.6; text-align: center; line-height: 1.6; padding: 8px 0 4px;">
+                        Le compteur affiché est basé sur une projection et ne reflète pas nécessairement le nombre exact de commandes validées. Le gain réellement distribué sera déterminé par le nombre de commandes effectives à la clôture du concours, conformément aux <a href="#cgu" style="color: inherit; text-decoration: underline;">conditions générales</a>.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -993,7 +1006,7 @@
     </section>
 
     <!-- CGU -->
-    <section class="cgu">
+    <section class="cgu" id="cgu">
         <div class="container">
             <h2 class="cgu-title">Conditions g&eacute;n&eacute;rales du concours</h2>
 
